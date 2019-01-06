@@ -14,7 +14,7 @@
     text-align: center;
   }
 
-  &__errors {
+  .chat-group-form__errors {
     margin: 30px 0;
     padding: 20px 40px;
     border: 1px solid #ddd;
@@ -40,7 +40,7 @@
     }
   }
 
-  &__field {
+  .chat-group-form__field {
     margin-top: 30px;
     &:after {
       content: "";
@@ -48,7 +48,7 @@
       display: block;
     }
 
-    &--left {
+    .chat-group-form__field--left {
       float: left;
       width: 30%;
       padding-right: 20px;
@@ -56,61 +56,62 @@
       box-sizing: border-box;
     }
 
-    &--right {
+    .chat-group-form__field--right {
       float: right;
       width: 70%;
     }
 
-    &__label {
+    .chat-group-form__label {
       display: block;
       line-height: 50px;
       font-weight: bold;
       text-align: right;
     }
 
-    &__input {
+    .chat-group-form__input {
       float: left;
       width: 100%;
       line-height: 30px;
       padding: 10px 15px;
       box-sizing: border-box;
     }
+  }
 
-    &__action-btn {
+  .chat-group-user {
+    padding: 0 15px;
+    line-height: 50px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    .chat-group-user__name {
+      float: left;
+    }
+
+    .chat-group-user__btn {
+      float: right;
+      display: inline-block;
+      cursor: pointer;
+
+      &.chat-group-user__btn--add {
+        color: #38aef0;
+      }
+
+      &.chat-group-user__btn--remove {
+        color: #f05050;
+      }
+    }
+  }
+
+  .chat-group-form__action-btn {
     display: inline-block;
     padding: 12px 20px;
     color: #fff;
     background-color: #38aef0;
     border: 0;
   }
-}
-
-.chat-group-user {
-  padding: 0 15px;
-  line-height: 50px;
-  font-size: 14px;
-  border-bottom: 1px solid #ddd;
-  &:after {
-    content: "";
-    clear: both;
-    display: block;
-  }
-
-  &__name {
-    float: left;
-  }
-
-  &__btn {
-    float: right;
-    display: inline-block;
-    cursor: pointer;
-    &__btn--add {
-      color: #38aef0;
-    }
-
-    &__btn--remove {
-      color: #f05050;
-    }
-  }
-}
 }
