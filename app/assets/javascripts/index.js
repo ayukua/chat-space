@@ -46,8 +46,8 @@ $(document).on('turbolinks:load', function() {
   });
 
   $(document).on("click",".chat-group-user__btn--add", function () {
-    id = $(this).data("user-id");
-  name = $(this).data("user-name");
+    var id = $(this).data("user-id");
+    var name = $(this).data("user-name");
     var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
                   <input name='group[user_ids][]' type='hidden' value=${id}>
                   <p class='chat-group-user__name'>${name}</p>
