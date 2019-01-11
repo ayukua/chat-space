@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function() {
         }
       })
       .fail(function() {
-        alert('映画検索に失敗しました');
+        alert('ユーザーの検索に失敗しました');
       })
     }
   });
