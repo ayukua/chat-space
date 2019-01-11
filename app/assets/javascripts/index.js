@@ -61,6 +61,5 @@ $(document).on('turbolinks:load', function() {
     id = $(this).data("value");
   name = $(this).data("chat-group-user__name");
     $(this).parent().remove();
-
   });
 });
