@@ -51,11 +51,11 @@ $(document).on('turbolinks:load', function() {
   $(function(){
     //特定のWebページに入っている場合のみ５秒インターバル
     if(window.location.href.match(/\/groups\/\d+\/messages/)){
-      setInterval(update_messages,5000)
+      setInterval(updateMessages,5000)
     }
   })
 
-  function update_messages(){
+  function updateMessages(){
     //webページ情報を変数urlに取得
     var url = location.href;
     //Webページ上の最新のメッセージIDを取得
