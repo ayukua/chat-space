@@ -51,11 +51,11 @@ $(document).on('turbolinks:load', function() {
   $(function(){
     //特定のWebページに入っている場合のみ５秒インターバル
     if(window.location.href.match(/\/groups\/\d+\/messages/)){
-      setInterval(update,5000)
+      setInterval(update_messages,5000)
     }
   })
 
-  function update(){
+  function update_messages(){
     //webページ情報を変数urlに取得
     var url = location.href;
     //Webページ上の最新のメッセージIDを取得
@@ -68,9 +68,9 @@ $(document).on('turbolinks:load', function() {
   })
 
     //Webページ上で非表示のメッセージをmessagesに追加
-    .done(function(data){
-      if( data.length !== 0 ){
-        data.forEach(function(message){
+    .done(function(messages){
+      if( messages.length !== 0 ){
+        messages.forEach(function(message){
           $(".messages").append(buildHTML(message));
         });
       }
