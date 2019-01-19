@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
   var search_list = $("#user-search-result");
   var user_list = $("#chat-group-users");
 
+  //チャットメンバーの情報をコードに追加する処理
   function appendUser(user) {
     var html = `<div class="chat-group-user clearfix">
                   <p class="chat-group-user__name">${user.name}</p>
@@ -11,6 +12,7 @@ $(document).on('turbolinks:load', function() {
     search_list.append(html);
   }
 
+  // インクリメンタルサーチ結果に１人もいないときに引数messageを表示する処理
   function appendNoUser(message) {
     var html = `<li>
                   <div class='listview__element--right-icon'>${ message }</div>
@@ -18,6 +20,7 @@ $(document).on('turbolinks:load', function() {
     search_list.append(html);
   }
 
+  // チャットメンバー候補のインクリメンタルサーチ
   $("#user-search-field").on("input", function() {
     var input = $("#user-search-field").val();
     $("#user-search-result").empty();
@@ -43,8 +46,9 @@ $(document).on('turbolinks:load', function() {
         alert('ユーザーの検索に失敗しました');
       })
     }
-  });
+  })
 
+  //追加ボタンでチャットメンバーを表示
   $(document).on("click",".chat-group-user__btn--add", function () {
     var id = $(this).data("user-id");
     var name = $(this).data("user-name");
@@ -57,9 +61,10 @@ $(document).on('turbolinks:load', function() {
     user_list.append(html);
   });
 
+  //削除ボタンでチャットメンバーの非表示
   $(document).on("click",".js-remove-btn", function () {
     id = $(this).data("value");
   name = $(this).data("chat-group-user__name");
     $(this).parent().remove();
   });
-});
+})

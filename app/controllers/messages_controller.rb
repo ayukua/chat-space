@@ -4,6 +4,11 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
+    respond_to do |format|
+      format.html
+      #変数new_messagesにWebページに表示されていないDB上のメッセージを格納
+      format.json { @new_messages = @messages.where('id > ?', params[:key]) }
+    end
   end
 
   def create
