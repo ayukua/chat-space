@@ -48,12 +48,11 @@ $(document).on('turbolinks:load', function() {
   })
 
   //自動更新機能の実装
-  $(function(){
     //特定のWebページに入っている場合のみ５秒インターバル
-    if(window.location.href.match(/\/groups\/\d+\/messages/)){
+    if(location.href.match(/\/groups\/\d+\/messages/)){
+      console.log(location.href)
       setInterval(updateMessages,5000)
     }
-  })
 
   function updateMessages(){
     //webページ情報を変数urlに取得
