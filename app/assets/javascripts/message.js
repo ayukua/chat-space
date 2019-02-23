@@ -43,40 +43,68 @@ $(document).on('turbolinks:load', function() {
       $(`.form__submit`).prop("disabled", false);
     })
     .fail(function(){
-      alert('error');
+      alert('データを送信できませんでした');
     })
   })
 
   //自動更新機能の実装
-    //特定のWebページに入っている場合のみ５秒インターバル
-    if(location.href.match(/\/groups\/\d+\/messages/)){
-      console.log(location.href)
-      setInterval(updateMessages,5000)
+  var interval = setInterval(function(){
+  //特定のWebページに入っている場合のみ５秒インターバル
+  if(location.pathname.match(/\/groups\/\d+\/messages/)){
+
+      //webページ情報を変数urlに取得
+      var url = location.href;
+      //Webページ上の最新のメッセージIDを取得
+      var last_message_id = $(".message:last").data("message-id");
+      $.ajax({
+        url: url,
+        type: "GET",
+        data: { key: last_message_id },
+        dataType: 'json'
+      })
+
+      //Webページ上で非表示のメッセージをmessagesに追加
+      .done(function(messages){
+        if( messages.length !== 0 ){
+          messages.forEach(function(message){
+            $(".messages").append(buildHTML(message));
+          });
+        }
+      })
+      .fail(function(){
+        alert('自動更新に失敗しました');
+      })
+     }
+    else {
+      clearInterval(interval);
+      console.log(location.pathname);
     }
 
-  function updateMessages(){
-    //webページ情報を変数urlに取得
-    var url = location.href;
-    //Webページ上の最新のメッセージIDを取得
-    var last_message_id = $(".message:last").data("message-id");
-   $.ajax({
-      url: url,
-      type: "GET",
-      data: { key: last_message_id },
-      dataType: 'json'
-  })
+    },5000)
 
-    //Webページ上で非表示のメッセージをmessagesに追加
-    .done(function(messages){
-      if( messages.length !== 0 ){
-        messages.forEach(function(message){
-          $(".messages").append(buildHTML(message));
-        });
-      }
-    })
-    .fail(function(){
-      alert('error');
-    })
-  }
+  // function updateMessages(){
+  //   //webページ情報を変数urlに取得
+  //   var url = location.href;
+  //   //Webページ上の最新のメッセージIDを取得
+  //   var last_message_id = $(".message:last").data("message-id");
+  //  $.ajax({
+  //     url: url,
+  //     type: "GET",
+  //     data: { key: last_message_id },
+  //     dataType: 'json'
+  // })
+
+  //   //Webページ上で非表示のメッセージをmessagesに追加
+  //   .done(function(messages){
+  //     if( messages.length !== 0 ){
+  //       messages.forEach(function(message){
+  //         $(".messages").append(buildHTML(message));
+  //       });
+  //     }
+  //   })
+  //   .fail(function(){
+  //     alert('自動更新に失敗しました');
+  //   })
+  // }
 })
 
