@@ -11,8 +11,7 @@
             %li.member
               = member.name
       .right-header
-        .right-header__button
-          Edit
+        = link_to 'edit',edit_group_path(@group.id), class: 'right-header__button'
     .messages
       = render partial: 'message', collection: @messages
 
