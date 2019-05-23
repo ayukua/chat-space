@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
     //message情報をコードに追記する処理
     function buildHTML(message){
       if(message.image.url !== null){
-        alt_html = `<img class="lower-message__image" src=${message.image} alt="表示できません">`
+        alt_html = `<img class="lower-message__image" src='${message.image}' alt="表示できません">`
       }
       else{
         alt_html = ""
@@ -38,8 +38,8 @@ $(document).on('turbolinks:load', function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html)
-      $('.form__message').val('')
-      $('.form__mask').val('')
+      //自動生成されたフォーム内のリセット
+      $('#new_message')[0].reset();
       $(`.form__submit`).prop("disabled", false);
     })
     .fail(function(){
