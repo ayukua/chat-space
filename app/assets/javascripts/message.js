@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
     //message情報をコードに追記する処理
     function buildHTML(message){
-      if(message.image.url !== null){
+      if(message.image !== null){
         alt_html = `<img class="lower-message__image" src='${message.image}' alt="表示できません">`
       }
       else{
@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
                       <div class="upper-message__date">${message.date}</div>
                     </div>
                     <div class="lower-message">
-                      <p class="lower-message_content">${message.text}</p>
+                      <p class="lower-message__content">${message.text}</p>
                       ${alt_html}
                     </div>
                   </div>`
@@ -37,8 +37,10 @@ $(document).on('turbolinks:load', function() {
     //ajax通信した内容のコードへの追加およびフォーム内のvalue値を空白に
     .done(function(data){
       var html = buildHTML(data);
-      $('.messages').append(html)
+      $('.messages').append(html);
       //自動生成されたフォーム内のリセット
+      // $('.form__message').val('');
+      // $('.form__mask').val('');
       $('#new_message')[0].reset();
       $(`.form__submit`).prop("disabled", false);
     })
