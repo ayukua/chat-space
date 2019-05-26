@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load', function() {
     //message情報をコードに追記する処理
     function buildHTML(message){
-      if(message.image !== null){
-        alt_html = `<img class="lower-message__image" src='${message.image}' alt="表示できません">`
+      if(message.image.url !== null){
+        alt_html = `<img class="lower-message__image" src='${message.image.url}' alt="表示できません">`
       }
       else{
         alt_html = ""
@@ -74,6 +74,7 @@ $(document).on('turbolinks:load', function() {
       .done(function(messages){
         if( messages.length !== 0 ){
           messages.forEach(function(message){
+            console.log(message);
             $(".messages").append(buildHTML(message));
           });
         }
