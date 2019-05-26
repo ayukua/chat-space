@@ -36,14 +36,19 @@ $(document).on('turbolinks:load', function() {
 
     //ajax通信した内容のコードへの追加およびフォーム内のvalue値を空白に
     .done(function(data){
+      if(typeof data.text === 'undefined') {
+        alert('メッセージを入力して下さい');
+    }
+    else{
       var html = buildHTML(data);
       $('.messages').append(html);
       //自動生成されたフォーム内のリセット
       // $('.form__message').val('');
       // $('.form__mask').val('');
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
       $('#new_message')[0].reset();
       $(`.form__submit`).prop("disabled", false);
-    })
+    }})
     .fail(function(){
       alert('データを送信できませんでした');
     })
